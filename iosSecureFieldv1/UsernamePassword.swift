@@ -7,31 +7,19 @@
 
 import SwiftUI
 
-struct SecureFieldFactory {
-    static func makeSecureField(placeholder: String, text: Binding<String>) -> SecureField<Text> {
-        return SecureField(placeholder, text: text)
-    }
-}
-
-
 struct UsernamePassword: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var submittedUsername: String = ""
     @State private var submittedPassword: String = ""
     @State private var showSubmittedInfo: Bool = false
-    var secureField: SecureField<Text>?
-    
-    init() {
-        self.secureField = SecureFieldFactory.makeSecureField(placeholder: "Password", text: $password)
-    }
-    
+        
     var body: some View {
         VStack {
             Form {
                 Section(header: Text("Login Information")) {
                     TextField("Username", text: $username)
-                    secureField
+                    SecureField("Password", text: $password)
                 }
                 
                 Section {
